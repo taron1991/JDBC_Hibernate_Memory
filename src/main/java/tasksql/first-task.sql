@@ -30,7 +30,7 @@ INNER JOIN gearbox ON car.gearbox_id=gearbox.id INNER JOIN engine ON car.engine_
  Select car.name,body.body,engine.engine,gearbox.gearbox FROM car FULL JOIN body ON car.body_id=body.id
      FULL JOIN gearbox ON car.gearbox_id=gearbox.id FULL JOIN engine ON car.engine_id=engine.id;
 /*2 отсуствие кузова*/
- select car.name,body.body from car left join body on car.body_id=body.id;
+ select car.name,body.body from body right join car on car.body_id=body.id;;
 /*3 отсутсвие двигателя*/
  select car.name,engine.engine from car left join engine on car.engine_id=engine.id;
 /*4 отсуствие КПП*/
