@@ -1,5 +1,9 @@
 package Project;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Constants {
 
     public static final String FORMAT_DATE_HH_MM ="yyyy-MM-dd HH:mm" ;

@@ -5,12 +5,12 @@ import java.util.List;
 public class FindAllAction implements UserAction {
     @Override
     public String name() {
-        return "====FINDALL ACTION====";
+        return "====FIND ALL ACTION====";
     }
 
     @Override
-    public boolean execute(Input input, Store memTracker) {
-        List<Item> all = memTracker.findAll();
+    public boolean execute(Input input, Store store) {
+        List<Item> all = store.findAll();
         if(all.isEmpty()){
             System.out.println("our list is empty");
         }

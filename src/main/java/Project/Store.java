@@ -9,7 +9,6 @@ import java.util.Optional;
 /**
  * предоставляет CRUD и допметоды для работы с сущностью
  * @author Taron
- * /** + enter
  * @since 1.0
  */
 public interface Store {
@@ -71,8 +70,8 @@ public interface Store {
     /**
      * поиск людей по дате добавления(интервал)
      *
-     * @param start интервал
-     * @param end   интервал
+     * @param start начало интервала
+     * @param end   конец интервала
      * @return список людей
      */
     List<Item> findByIntervalDate(LocalDateTime start, LocalDateTime end);

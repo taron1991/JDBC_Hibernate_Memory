@@ -7,13 +7,13 @@ public class CreateAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Store memTracker) {
+    public boolean execute(Input input, Store store) {
         Item item = new Item();
-        String enter_name = input.askStr("enter name");
-        String enter_description = input.askStr("enter description");
-        item.setName(enter_name);
-        item.setDescription(enter_description);
-        memTracker.add(item);
+        String name = input.askStr("enter name");
+        String description = input.askStr("enter description");
+        item.setName(name);
+        item.setDescription(description);
+        store.add(item);
         return true;
     }
 }

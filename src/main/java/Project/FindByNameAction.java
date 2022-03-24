@@ -9,11 +9,11 @@ public class FindByNameAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Store memTracker) {
-        String ente_name = input.askStr("enter name");
-        List<Item> byName = memTracker.findByName(ente_name);
+    public boolean execute(Input input, Store store) {
+        String name = input.askStr("enter name");
+        List<Item> byName = store.findByName(name);
         if (byName.isEmpty()) {
-            System.out.println("name not fund try again");
+            System.out.println("name not found try again");
         } else {
             System.out.println(byName);
         }

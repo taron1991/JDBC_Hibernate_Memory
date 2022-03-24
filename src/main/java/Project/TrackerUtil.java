@@ -11,14 +11,30 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+/**
+ * Класс для обработки дополнительных значений методов
+ */
 public final class TrackerUtil {
+    /**
+     * Логирование(библиотека slf4j)
+     */
     private static final Logger LOG = LoggerFactory.getLogger(TrackerUtil.class);
 
 
+    /**
+     * Метод для парсинга класс LocalDateTime в TimeStamp
+     * @param localDateTime
+     * @return TimeStamp
+     */
     public static Timestamp parserTime(LocalDateTime localDateTime) {
         return Timestamp.valueOf(localDateTime);
     }
 
+    /**
+     * Метод для генерации Id используя класс UUID
+     * @return ай ди типа long
+     */
     public static Long generateId() {
         String key = UUID.randomUUID().toString();
         String result = "";
@@ -36,6 +52,11 @@ public final class TrackerUtil {
     }
 
 
+    /**
+     * Метод для форматирования(парсинга) времени в разбитую на две части пару LocalDateTime
+     * @param text время в формате String
+     * @return параметризованный класс с двумя значениями LocalDateTime
+     */
     public static Pair<LocalDateTime, LocalDateTime> transformationStringToLocalDateTime(String text) {
 
         LocalDateTime start = LocalDateTime.now();

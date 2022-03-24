@@ -17,9 +17,9 @@ public class JdbcStore implements Store{
 
     private Connection connection;
     private String INSERT_SQL = "INSERT INTO items(name,description,createtime) VALUES(?,?,?)";
-    private String DELETE_SQl = "DELETE FROM items WHERE items.id = ?";
-    private String UPDATE_SQl = "UPDATE items SET name = ? , description = ? WHERE items.id = ?";
-    private String FINDALL_SQl = "SELECT*FROM items";
+    private String DELETE_SQL = "DELETE FROM items WHERE items.id = ?";
+    private String UPDATE_SQL = "UPDATE items SET name = ? , description = ? WHERE items.id = ?";
+    private String FINDALL_SQL = "SELECT*FROM items";
     private String FIND_BY_ID = "SELECT*FROM items WHERE id=?";
     private String FIND_BY_NAME = "SELECT*FROM items WHERE name=?";
     private String FIND_BY_INTERVAL = "SELECT *FROM items where createtime BETWEEN ? AND ?";
@@ -61,7 +61,7 @@ public class JdbcStore implements Store{
 
             item.setId(resultSet.getInt("id"));
         } catch (Exception e) {
-            log.warn("error has happened while adding");
+            log.warn("error has happened while adding {} ",item);
 
         }
 
@@ -70,7 +70,7 @@ public class JdbcStore implements Store{
 
     @Override
     public boolean delete(long id) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SQl)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SQL)) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
             if (preparedStatement.executeUpdate() > 0) {
@@ -84,7 +84,7 @@ public class JdbcStore implements Store{
 
     @Override
     public boolean update(long id, Item item) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQl)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)) {
             preparedStatement.setString(1, item.getName());
             preparedStatement.setString(2, item.getDescription());
             preparedStatement.setLong(3, id);
@@ -93,7 +93,7 @@ public class JdbcStore implements Store{
                 return true;
             }
         } catch (SQLException sqlException) {
-            log.warn("id not found");
+            log.warn("id not found {},{}",id,item);
         }
         return false;
     }
@@ -103,7 +103,7 @@ public class JdbcStore implements Store{
         List<Item> result = new ArrayList<>();
 
         try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(FINDALL_SQl);
+            ResultSet resultSet = statement.executeQuery(FINDALL_SQL);
             while (resultSet.next()) {
                 Item item = new Item();
                 item.setName(resultSet.getString("name"));
@@ -113,7 +113,7 @@ public class JdbcStore implements Store{
             }
 
         } catch (SQLException sqlException) {
-            log.warn("error in findall");
+            log.warn("error in findall ");
         }
 
         return result;
@@ -137,7 +137,7 @@ public class JdbcStore implements Store{
             }
 
         } catch (SQLException e) {
-            log.warn("id not found");
+            log.warn("id not found {}",id);
         }
 
         return items.stream().findFirst();
@@ -161,7 +161,7 @@ public class JdbcStore implements Store{
             }
 
         } catch (SQLException e) {
-            log.warn("name not found");
+            log.warn("name not found {}",name);
         }
         return list;
     }
@@ -189,7 +189,7 @@ public class JdbcStore implements Store{
             }
         }
         catch (SQLException exception){
-            log.error("interval not found");
+            log.error("interval not found {},{}",start,end);
         }
         return list;
     }

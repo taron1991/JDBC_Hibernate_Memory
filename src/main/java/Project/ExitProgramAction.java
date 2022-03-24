@@ -7,7 +7,7 @@ public class ExitProgramAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Store memTracker) {
+    public boolean execute(Input input, Store store) {
         return false;
     }
 }

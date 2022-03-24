@@ -7,14 +7,14 @@ public class ReplaceAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Store memTracker) {
+    public boolean execute(Input input, Store store) {
         Item item = new Item();
         long id = input.askLong("enter id: ");
         String name = input.askStr("enter name: ");
         String desc = input.askStr("enter description: ");
         item.setDescription(desc);
         item.setName(name);
-        boolean update = memTracker.update(id, item);
+        boolean update = store.update(id, item);
         if (update) {
             System.out.println("successfully");
         } else {
