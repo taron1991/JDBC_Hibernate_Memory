@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -75,6 +77,7 @@ public final class TrackerUtil {
                 DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 start = LocalDateTime.parse(s, dateTimeFormatter);
                 end = LocalDateTime.parse(s1, dateTimeFormatter);
+
                 return new Pair<>(start, end);
             } else {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm"); //16:23-16:35

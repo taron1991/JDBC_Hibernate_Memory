@@ -35,7 +35,7 @@ public class StartUI {
         Input input = new ConsoleInput();
 
         try {
-            Store store = new JdbcStore(connection);
+            Store store = new MemStore();
             store.init();
             UserAction[] actions = {
                     new CreateAction(),
