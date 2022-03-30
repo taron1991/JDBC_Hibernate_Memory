@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>  <!--Driver postgres-->
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property> <!-- url доступа в бд -->
+        <property name="hibernate.connection.username">postgres</property> <!-- userName -->
+        <property name="hibernate.connection.password">westside</property> <!-- Пароль -->
+        <property name="hibernate.connection.pool_size">1</property>
+        <!-- количество пулл соединений, по дефолту приложение не многопоточно и нам достаточно использовать одно, если их более,
+        то hibernate будет создавать объект session для каждого из пула увеличивая производительность -->
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- нужно для того, чтобы SessionFactory не вернул null и для того, что если мы закроем SessionFactory, наш объект session тоже закрылся -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- параметр автосоздания таблиц -->
+        <property name="hibernate.show_sql">true</property> <!-- показывает в консоли sql который был запрошен в базу данных -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property> <!-- диалект бд -->
+    </session-factory>
+</hibernate-configuration>

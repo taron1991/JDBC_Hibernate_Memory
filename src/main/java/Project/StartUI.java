@@ -35,7 +35,7 @@ public class StartUI {
         Input input = new ConsoleInput();
 
         try {
-            Store store = new MemStore();
+            Store store = new Hibernate();
             store.init();
             UserAction[] actions = {
                     new CreateAction(),
